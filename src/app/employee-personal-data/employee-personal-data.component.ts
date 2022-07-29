@@ -304,7 +304,7 @@ export class EmployeePersonalDataComponent implements OnInit {
       otherConsentCheckbox: new FormControl(false, [Validators.required]),
     });
 
-    this.filldata();
+    // this.filldata();
     // } else {
 
     // }
@@ -537,83 +537,83 @@ export class EmployeePersonalDataComponent implements OnInit {
 
 
 
-  filldata() {
-    this.myReactiveForm.controls.FirstName.setValue("Sahil");
-    this.myReactiveForm.controls.MaritalStatus.setValue("married");
-    this.myReactiveForm.controls.LastName.setValue("Rajpal");
-    this.myReactiveForm.controls.MiddleName.setValue("m");
-    this.myReactiveForm.controls.PhoneNumber.setValue("1234567890");
-    this.myReactiveForm.controls.CAddress.setValue("banjra");
-    this.myReactiveForm.controls.CAddress1.setValue("banjara2");
-    this.myReactiveForm.controls.PAddress.setValue("srilax");
-    this.myReactiveForm.controls.PAddress1.setValue("srilax2");
-    this.myReactiveForm.controls.CPinCode.setValue("133001");
-    this.myReactiveForm.controls.PinCode.setValue("500033");
-    this.myReactiveForm.controls.Email.setValue("shilkkr56@g.com");
-    this.myReactiveForm.controls.DOB.setValue("30-09-2001");
-    this.myReactiveForm.controls.email.setValue("shilkkr56@g.com");
-    this.myReactiveForm.controls.phone.setValue("1234567890");
-    this.myReactiveForm.controls.country.setValue("India");
-    this.myReactiveForm.controls.passport.setValue("J1239349");
-    this.myReactiveForm.controls.issueddate.setValue("21-12-2002");
-    this.myReactiveForm.controls.expirationdate.setValue("21-01-2013");
-    this.myReactiveForm.controls.issuedby.setValue("India");
-    this.myReactiveForm.controls.pan.setValue("ABCDE1234F");
-    this.myReactiveForm.controls.panname.setValue("Sahil");
-    this.myReactiveForm.controls.aadhar.setValue("4444 4444 4444");
-    this.myReactiveForm.controls.aadharname.setValue("Sahil");
-    this.myReactiveForm.controls.companyname.setValue("jocata");
-    this.myReactiveForm.controls.fromyr.setValue("2022");
-    this.myReactiveForm.controls.toyr.setValue("2012");
-    this.myReactiveForm.controls.designation.setValue("intern");
-    this.myReactiveForm.controls.location.setValue("hyderbad");
-    this.myReactiveForm.controls.qualification.setValue("MBA");
-    this.myReactiveForm.controls.major.setValue("major");
-    this.myReactiveForm.controls.Membership.setValue("membership");
-    this.myReactiveForm.controls.OrgMembership.setValue("OrgMembership");
-    this.myReactiveForm.controls.membershipdate.setValue("04-08-2002");
-    this.myReactiveForm.controls.honour.setValue("honour");
-    this.myReactiveForm.controls.honouraward.setValue("award");
-    this.myReactiveForm.controls.grantor.setValue("grantor");
-    this.myReactiveForm.controls.year.setValue("2011");
-    this.myReactiveForm.controls.currentstate.setValue("Haryana");
-    this.myReactiveForm.controls.currentcity.setValue("Bathinda");
-    this.myReactiveForm.controls.permanentstate.setValue("Haryana");
-    this.myReactiveForm.controls.permanentcity.setValue("Bathinda");
-    this.myReactiveForm.controls.institute.setValue("chitakra");
-    this.myReactiveForm.controls.yearReceived.setValue("2011");
-    this.myReactiveForm.controls.emergencyName.setValue("Jha");
-    this.myReactiveForm.controls.relation.setValue("bro");
-    this.myReactiveForm.controls.emergencyphone1.setValue("1234567890");
-    this.myReactiveForm.controls.emergencyphone2.setValue("1234567890");
-    this.myReactiveForm.controls.emergencystate.setValue("Haryana");
-    this.myReactiveForm.controls.qualificationstate.setValue("Bathinda");
-    this.myReactiveForm.controls.emergencycity.setValue("Bathinda");
-    this.myReactiveForm.controls.address1.setValue("banjara1");
-    this.myReactiveForm.controls.address2.setValue("banjara2");
-    this.myReactiveForm.controls.pin.setValue("500033");
-    this.myReactiveForm.controls.gender.setValue("male");
-    this.myReactiveForm.controls.isInjured.setValue("true");
-    this.myReactiveForm.controls.isIll.setValue("true");
-    this.myReactiveForm.controls.isDisabled.setValue("true");
-    this.myReactiveForm.controls.isMedicalAlert.setValue("true");
-    this.myReactiveForm.controls.BloodGrp.setValue("A+");
-    this.myReactiveForm.controls.injuryDetails.setValue("injury details");
-    this.myReactiveForm.controls.Healthinfo.setValue("health issues");
-    this.myReactiveForm.controls.illnessDetails.setValue("illness details");
-    this.myReactiveForm.controls.disabilityDetails.setValue("disability details");
-    this.myReactiveForm.controls.declarationCheckboxOne.setValue("true");
-    this.myReactiveForm.controls.declarationCheckboxSecond.setValue("true");
-    this.myReactiveForm.controls.beingQualifiedCheckbox.setValue("true");
-    this.myReactiveForm.controls.otherConsentCheckbox.setValue("true");
+  // filldata() {
+  //   this.myReactiveForm.controls.FirstName.setValue("Sahil");
+  //   this.myReactiveForm.controls.MaritalStatus.setValue("married");
+  //   this.myReactiveForm.controls.LastName.setValue("Rajpal");
+  //   this.myReactiveForm.controls.MiddleName.setValue("m");
+  //   this.myReactiveForm.controls.PhoneNumber.setValue("1234567890");
+  //   this.myReactiveForm.controls.CAddress.setValue("banjra");
+  //   this.myReactiveForm.controls.CAddress1.setValue("banjara2");
+  //   this.myReactiveForm.controls.PAddress.setValue("srilax");
+  //   this.myReactiveForm.controls.PAddress1.setValue("srilax2");
+  //   this.myReactiveForm.controls.CPinCode.setValue("133001");
+  //   this.myReactiveForm.controls.PinCode.setValue("500033");
+  //   this.myReactiveForm.controls.Email.setValue("shilkkr56@g.com");
+  //   this.myReactiveForm.controls.DOB.setValue("30-09-2001");
+  //   this.myReactiveForm.controls.email.setValue("shilkkr56@g.com");
+  //   this.myReactiveForm.controls.phone.setValue("1234567890");
+  //   this.myReactiveForm.controls.country.setValue("India");
+  //   this.myReactiveForm.controls.passport.setValue("J1239349");
+  //   this.myReactiveForm.controls.issueddate.setValue("21-12-2002");
+  //   this.myReactiveForm.controls.expirationdate.setValue("21-01-2013");
+  //   this.myReactiveForm.controls.issuedby.setValue("India");
+  //   this.myReactiveForm.controls.pan.setValue("ABCDE1234F");
+  //   this.myReactiveForm.controls.panname.setValue("Sahil");
+  //   this.myReactiveForm.controls.aadhar.setValue("4444 4444 4444");
+  //   this.myReactiveForm.controls.aadharname.setValue("Sahil");
+  //   this.myReactiveForm.controls.companyname.setValue("jocata");
+  //   this.myReactiveForm.controls.fromyr.setValue("2022");
+  //   this.myReactiveForm.controls.toyr.setValue("2012");
+  //   this.myReactiveForm.controls.designation.setValue("intern");
+  //   this.myReactiveForm.controls.location.setValue("hyderbad");
+  //   this.myReactiveForm.controls.qualification.setValue("MBA");
+  //   this.myReactiveForm.controls.major.setValue("major");
+  //   this.myReactiveForm.controls.Membership.setValue("membership");
+  //   this.myReactiveForm.controls.OrgMembership.setValue("OrgMembership");
+  //   this.myReactiveForm.controls.membershipdate.setValue("04-08-2002");
+  //   this.myReactiveForm.controls.honour.setValue("honour");
+  //   this.myReactiveForm.controls.honouraward.setValue("award");
+  //   this.myReactiveForm.controls.grantor.setValue("grantor");
+  //   this.myReactiveForm.controls.year.setValue("2011");
+  //   this.myReactiveForm.controls.currentstate.setValue("Haryana");
+  //   this.myReactiveForm.controls.currentcity.setValue("Bathinda");
+  //   this.myReactiveForm.controls.permanentstate.setValue("Haryana");
+  //   this.myReactiveForm.controls.permanentcity.setValue("Bathinda");
+  //   this.myReactiveForm.controls.institute.setValue("chitakra");
+  //   this.myReactiveForm.controls.yearReceived.setValue("2011");
+  //   this.myReactiveForm.controls.emergencyName.setValue("Jha");
+  //   this.myReactiveForm.controls.relation.setValue("bro");
+  //   this.myReactiveForm.controls.emergencyphone1.setValue("1234567890");
+  //   this.myReactiveForm.controls.emergencyphone2.setValue("1234567890");
+  //   this.myReactiveForm.controls.emergencystate.setValue("Haryana");
+  //   this.myReactiveForm.controls.qualificationstate.setValue("Bathinda");
+  //   this.myReactiveForm.controls.emergencycity.setValue("Bathinda");
+  //   this.myReactiveForm.controls.address1.setValue("banjara1");
+  //   this.myReactiveForm.controls.address2.setValue("banjara2");
+  //   this.myReactiveForm.controls.pin.setValue("500033");
+  //   this.myReactiveForm.controls.gender.setValue("male");
+  //   this.myReactiveForm.controls.isInjured.setValue("true");
+  //   this.myReactiveForm.controls.isIll.setValue("true");
+  //   this.myReactiveForm.controls.isDisabled.setValue("true");
+  //   this.myReactiveForm.controls.isMedicalAlert.setValue("true");
+  //   this.myReactiveForm.controls.BloodGrp.setValue("A+");
+  //   this.myReactiveForm.controls.injuryDetails.setValue("injury details");
+  //   this.myReactiveForm.controls.Healthinfo.setValue("health issues");
+  //   this.myReactiveForm.controls.illnessDetails.setValue("illness details");
+  //   this.myReactiveForm.controls.disabilityDetails.setValue("disability details");
+  //   this.myReactiveForm.controls.declarationCheckboxOne.setValue("true");
+  //   this.myReactiveForm.controls.declarationCheckboxSecond.setValue("true");
+  //   this.myReactiveForm.controls.beingQualifiedCheckbox.setValue("true");
+  //   this.myReactiveForm.controls.otherConsentCheckbox.setValue("true");
 
-    this.currentstate = "Haryana";
-    this.emergencystate = "Haryana";
-    this.permanentstate = "Haryana";
-    this.currentcity = "Ambala";
-    this.emergencycity = "Ambala";
-    this.permanentcity = "Ambala";
-  };
+  //   this.currentstate = "Haryana";
+  //   this.emergencystate = "Haryana";
+  //   this.permanentstate = "Haryana";
+  //   this.currentcity = "Ambala";
+  //   this.emergencycity = "Ambala";
+  //   this.permanentcity = "Ambala";
+  // };
 
 
 
