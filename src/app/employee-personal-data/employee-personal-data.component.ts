@@ -21,6 +21,155 @@ import { City } from './Citiy';
 export class EmployeePersonalDataComponent implements OnInit {
 
   title = 'official_project';
+  flag:boolean=false;
+  empid:string="";
+  username:string="";
+  injurySpec:boolean=false;
+  illnessSpec:boolean=false;
+  disabilitySpec:boolean=false;
+  click(){
+
+    this. flag=!this.flag;
+ 
+   }
+   injury()
+  {
+    this.injurySpec=true;
+  }
+  noinjury(){
+    this.injurySpec=false;
+  }
+  illness()
+  {
+    this.illnessSpec=!this.illnessSpec;
+  }
+  noillness()
+  {
+    this.illnessSpec=false;
+  }
+  disability()
+  {
+    this.disabilitySpec=!this.disabilitySpec;
+  }
+  nodisability()
+  {
+    this.disabilitySpec=false;
+  }
+
+   response={
+    "empId":"1015",
+    "fname":"John",
+    "mname":"John",
+    "lname":"John",
+    "dob":1985,
+    "phno":8427480655,
+    "maritalstatus":"married",
+    "emailid":"john@gmail.com",
+    "addresses":[
+    {
+    "address1":"BanjaraHills",
+    "address2":"Lakdikapul",
+    "city":"Hyderabad",
+    "state":"Telangana",
+    "pincode":"500100",
+    "addressType":"current"
+    },
+    {
+    "address1":"JublieeHills",
+    "address2":"Lakdikapul",
+    "city":"Hyderabad",
+    "state":"Telangana",
+    "pincode":"500100",
+    "addressType":"permanent" 
+    }
+    ],
+    "emergencyName":"Rosy",
+    "emergencyRelation":"Mother",
+    "emergencyPh1":9874561230,
+    "emergencyPh2":987999999,
+    "emergencyAddr1":"dbadawdibadoa",
+    "emergencyAddr2":"odnadoandaodnawpd",
+    "emergencyCity":"Hyderabad",
+    "emergencyState":"Telangana",
+    "emergencyPincode":"500055",
+    "citizenshipCountry":"India",
+    "passportNumber":"AI123456",
+    "passportIssueDate":"20.06.2012",
+    "passportExpiryDate":"20.06.2022",
+    "passportIssuedBy":"POI",
+    "panNumber":"BP1234PK52",
+    "nameOnPan":"Rama Shankar Darivemula",
+    "aadharNumber":"000012345678",
+    "nameOnAadhar":"Rama Shankar Darivemula",
+    "qualifications":[
+    {
+    "qualification":"Graduation",
+    "major":"CSE",
+    "institute":"JNTU",
+    "yearOfCompletion":"2010",
+    "stateOrCountry":"Telanagana"
+    },
+    {
+    "qualification":"Masters",
+    "major":"CSE",
+    "institute":"JNTU",
+    "yearOfCompletion":"2012",
+    "stateOrCountry":"Telanagana"
+    }
+    ],
+    "memberships":[
+    {
+      "membership":"membership",
+      "organizationMembership":"ACM",
+      "membershipDate":"20.06.2012" 
+    },
+    {
+    "membership":"membership",
+    "organizationMembership":"ACM",
+    "membershipDate":"20.06.2012" 
+    }
+    ],
+    "honors":[
+    {
+    "honour":"adaoidawonwnc",
+    "honourOfAward":"cbabcaoicawocb",
+    "honourGranter":"icbawoicbawocb",
+    "honourReceivedYear":"25.4.2006"
+    },
+    {
+    "honour":"anything",
+    "honourofaward":"sports",
+    "honourgranter":"dwandak",
+    "honourreceivedyear":"20.2.2005" 
+    }
+    ],
+    "previousemploymentdetails":[
+    {
+    "From":"Chanwibwacboidigarh",
+    "To":"adwwd",
+    "location":"dadaw",
+    "designation":"iwuabaibawib",
+    "companyName":"ucbwaocbabc"
+    },
+    // {
+    // "From":"",
+    // "To":"",
+    // "location":"",
+    // "designation":"",
+    // "companyName":""
+    // }
+    ],
+    "gender":"MALE",
+    "bloodgroup":"B+",
+    "isLivingWithInjury":"",
+    "injuryDetails":"details of injury which the employee is living with",
+    "isLivingWithIllness":"",
+    "illnessDetails":"",
+    "isLivingWithDisability":"",
+    "disabilityDetails":"details of disability which the employee is living with",
+    "allergyToMedicines":"mention the details of medicine to which employee is allergetic with",
+    "medicalAlert":""
+    }
 
   constructor(private http: HttpClient, private userservice: EmployeePersonalDataService, private route: Router) { }
 
@@ -77,6 +226,7 @@ export class EmployeePersonalDataComponent implements OnInit {
       console.log(this.maritalStatusList)
     })
 
+    
 
     this.userservice.getGenderFromDb().subscribe(data => {
       this.genderList = data;
@@ -90,6 +240,10 @@ export class EmployeePersonalDataComponent implements OnInit {
 
 
     this.myReactiveForm = new FormGroup({
+      crosscheck: new FormControl(null, [
+        Validators.pattern('[A-Za-z]{1,32}'),
+        Validators.required,
+      ]),
       FirstName: new FormControl(null, [
         Validators.pattern('[A-Za-z]{1,32}'),
         Validators.required,
@@ -304,7 +458,7 @@ export class EmployeePersonalDataComponent implements OnInit {
       otherConsentCheckbox: new FormControl(false, [Validators.required]),
     });
 
-    this.filldata();
+    // this.filldata();
     // } else {
 
     // }
@@ -537,71 +691,73 @@ export class EmployeePersonalDataComponent implements OnInit {
 
 
 
-  filldata() {
-    this.myReactiveForm.controls.FirstName.setValue("Sahil");
-    this.myReactiveForm.controls.MaritalStatus.setValue("married");
-    this.myReactiveForm.controls.LastName.setValue("Rajpal");
-    this.myReactiveForm.controls.MiddleName.setValue("m");
-    this.myReactiveForm.controls.PhoneNumber.setValue("1234567890");
-    this.myReactiveForm.controls.CAddress.setValue("banjra");
-    this.myReactiveForm.controls.CAddress1.setValue("banjara2");
-    this.myReactiveForm.controls.PAddress.setValue("srilax");
-    this.myReactiveForm.controls.PAddress1.setValue("srilax2");
-    this.myReactiveForm.controls.CPinCode.setValue("133001");
-    this.myReactiveForm.controls.PinCode.setValue("500033");
-    this.myReactiveForm.controls.Email.setValue("shilkkr56@g.com");
-    this.myReactiveForm.controls.DOB.setValue("30-09-2001");
+  filldata(a:string) {
+    this.empid=a
+    if(this.empid==this.response.empId){
+      this.myReactiveForm.controls.FirstName.setValue(this.response.fname);
+    this.myReactiveForm.controls.MaritalStatus.setValue(this.response.maritalstatus);
+    this.myReactiveForm.controls.LastName.setValue(this.response.lname);
+    this.myReactiveForm.controls.MiddleName.setValue(this.response.mname);
+    this.myReactiveForm.controls.PhoneNumber.setValue(this.response.phno);
+    this.myReactiveForm.controls.CAddress.setValue(this.response.addresses[0].address1);
+    this.myReactiveForm.controls.CAddress1.setValue(this.response.addresses[0].address2);
+    this.myReactiveForm.controls.PAddress.setValue(this.response.addresses[1].address1);
+    this.myReactiveForm.controls.PAddress1.setValue(this.response.addresses[1].address2);
+    this.myReactiveForm.controls.CPinCode.setValue(this.response.addresses[0].pincode);
+    this.myReactiveForm.controls.PinCode.setValue(this.response.addresses[1].pincode);
+    this.myReactiveForm.controls.Email.setValue(this.response.emailid);
+    this.myReactiveForm.controls.DOB.setValue(this.response.dob);
     this.myReactiveForm.controls.email.setValue("shilkkr56@g.com");
     this.myReactiveForm.controls.phone.setValue("1234567890");
-    this.myReactiveForm.controls.country.setValue("India");
-    this.myReactiveForm.controls.passport.setValue("J1239349");
-    this.myReactiveForm.controls.issueddate.setValue("21-12-2002");
-    this.myReactiveForm.controls.expirationdate.setValue("21-01-2013");
-    this.myReactiveForm.controls.issuedby.setValue("India");
-    this.myReactiveForm.controls.pan.setValue("ABCDE1234F");
-    this.myReactiveForm.controls.panname.setValue("Sahil");
-    this.myReactiveForm.controls.aadhar.setValue("4444 4444 4444");
-    this.myReactiveForm.controls.aadharname.setValue("Sahil");
-    this.myReactiveForm.controls.companyname.setValue("jocata");
-    this.myReactiveForm.controls.fromyr.setValue("2022");
-    this.myReactiveForm.controls.toyr.setValue("2012");
-    this.myReactiveForm.controls.designation.setValue("intern");
-    this.myReactiveForm.controls.location.setValue("hyderbad");
-    this.myReactiveForm.controls.qualification.setValue("MBA");
-    this.myReactiveForm.controls.major.setValue("major");
-    this.myReactiveForm.controls.Membership.setValue("membership");
-    this.myReactiveForm.controls.OrgMembership.setValue("OrgMembership");
-    this.myReactiveForm.controls.membershipdate.setValue("04-08-2002");
-    this.myReactiveForm.controls.honour.setValue("honour");
-    this.myReactiveForm.controls.honouraward.setValue("award");
-    this.myReactiveForm.controls.grantor.setValue("grantor");
-    this.myReactiveForm.controls.year.setValue("2011");
+    this.myReactiveForm.controls.country.setValue(this.response.citizenshipCountry);
+    this.myReactiveForm.controls.passport.setValue(this.response.passportNumber);
+    this.myReactiveForm.controls.issueddate.setValue(this.response.passportIssueDate);
+    this.myReactiveForm.controls.expirationdate.setValue(this.response.passportIssueDate);
+    this.myReactiveForm.controls.issuedby.setValue(this.response.passportIssuedBy);
+    this.myReactiveForm.controls.pan.setValue(this.response.panNumber);
+    this.myReactiveForm.controls.panname.setValue(this.response.nameOnPan);
+    this.myReactiveForm.controls.aadhar.setValue(this.response.aadharNumber);
+    this.myReactiveForm.controls.aadharname.setValue(this.response.nameOnAadhar);
+    this.myReactiveForm.controls.companyname.setValue(this.response.previousemploymentdetails[0].companyName);
+    this.myReactiveForm.controls.fromyr.setValue(this.response.previousemploymentdetails[0].From);
+    this.myReactiveForm.controls.toyr.setValue(this.response.previousemploymentdetails[0].To);
+    this.myReactiveForm.controls.designation.setValue(this.response.previousemploymentdetails[0].designation);
+    this.myReactiveForm.controls.location.setValue(this.response.previousemploymentdetails[0].location);
+    this.myReactiveForm.controls.qualification.setValue(this.response.qualifications[0].qualification);
+    this.myReactiveForm.controls.major.setValue(this.response.qualifications[0].major);
+    this.myReactiveForm.controls.Membership.setValue(this.response.memberships[0].membership);
+    this.myReactiveForm.controls.OrgMembership.setValue(this.response.memberships[0].organizationMembership);
+    this.myReactiveForm.controls.membershipdate.setValue(this.response.memberships[0].membershipDate);
+    this.myReactiveForm.controls.honour.setValue(this.response.honors[0].honour);
+    this.myReactiveForm.controls.honouraward.setValue(this.response.honors[0].honourOfAward);
+    this.myReactiveForm.controls.grantor.setValue(this.response.honors[0].honourGranter);
+    this.myReactiveForm.controls.year.setValue(this.response.honors[0].honourReceivedYear);
     this.myReactiveForm.controls.currentstate.setValue("Haryana");
     this.myReactiveForm.controls.currentcity.setValue("Bathinda");
     this.myReactiveForm.controls.permanentstate.setValue("Haryana");
     this.myReactiveForm.controls.permanentcity.setValue("Bathinda");
-    this.myReactiveForm.controls.institute.setValue("chitakra");
-    this.myReactiveForm.controls.yearReceived.setValue("2011");
-    this.myReactiveForm.controls.emergencyName.setValue("Jha");
-    this.myReactiveForm.controls.relation.setValue("bro");
-    this.myReactiveForm.controls.emergencyphone1.setValue("1234567890");
-    this.myReactiveForm.controls.emergencyphone2.setValue("1234567890");
-    this.myReactiveForm.controls.emergencystate.setValue("Haryana");
-    this.myReactiveForm.controls.qualificationstate.setValue("Bathinda");
-    this.myReactiveForm.controls.emergencycity.setValue("Bathinda");
-    this.myReactiveForm.controls.address1.setValue("banjara1");
-    this.myReactiveForm.controls.address2.setValue("banjara2");
-    this.myReactiveForm.controls.pin.setValue("500033");
-    this.myReactiveForm.controls.gender.setValue("male");
-    this.myReactiveForm.controls.isInjured.setValue("true");
-    this.myReactiveForm.controls.isIll.setValue("true");
-    this.myReactiveForm.controls.isDisabled.setValue("true");
-    this.myReactiveForm.controls.isMedicalAlert.setValue("true");
-    this.myReactiveForm.controls.BloodGrp.setValue("A+");
-    this.myReactiveForm.controls.injuryDetails.setValue("injury details");
-    this.myReactiveForm.controls.Healthinfo.setValue("health issues");
-    this.myReactiveForm.controls.illnessDetails.setValue("illness details");
-    this.myReactiveForm.controls.disabilityDetails.setValue("disability details");
+    this.myReactiveForm.controls.institute.setValue(this.response.qualifications[0].institute);
+    this.myReactiveForm.controls.yearReceived.setValue(this.response.honors[0].honourReceivedYear);
+    this.myReactiveForm.controls.emergencyName.setValue(this.response.emergencyName);
+    this.myReactiveForm.controls.relation.setValue(this.response.emergencyRelation);
+    this.myReactiveForm.controls.emergencyphone1.setValue(this.response.emergencyPh1);
+    this.myReactiveForm.controls.emergencyphone2.setValue(this.response.emergencyPh2);
+    this.myReactiveForm.controls.emergencystate.setValue(this.response.emergencyState);
+    this.myReactiveForm.controls.qualificationstate.setValue(this.response.qualifications[0].stateOrCountry);
+    this.myReactiveForm.controls.emergencycity.setValue(this.response.emergencyCity);
+    this.myReactiveForm.controls.address1.setValue(this.response.emergencyAddr1);
+    this.myReactiveForm.controls.address2.setValue(this.response.emergencyAddr2);
+    this.myReactiveForm.controls.pin.setValue(this.response.emergencyPincode);
+    this.myReactiveForm.controls.gender.setValue(this.response.gender);
+    this.myReactiveForm.controls.isInjured.setValue(this.response.isLivingWithInjury);
+    this.myReactiveForm.controls.isIll.setValue(this.response.isLivingWithIllness);
+    this.myReactiveForm.controls.isDisabled.setValue(this.response.isLivingWithDisability);
+    this.myReactiveForm.controls.isMedicalAlert.setValue(this.response.medicalAlert);
+    this.myReactiveForm.controls.BloodGrp.setValue(this.response.bloodgroup);
+    this.myReactiveForm.controls.injuryDetails.setValue(this.response.injuryDetails);
+    this.myReactiveForm.controls.Healthinfo.setValue(this.response.allergyToMedicines);
+    this.myReactiveForm.controls.illnessDetails.setValue(this.response.illnessDetails);
+    this.myReactiveForm.controls.disabilityDetails.setValue(this.response.disabilityDetails);
     this.myReactiveForm.controls.declarationCheckboxOne.setValue("true");
     this.myReactiveForm.controls.declarationCheckboxSecond.setValue("true");
     this.myReactiveForm.controls.beingQualifiedCheckbox.setValue("true");
@@ -613,6 +769,11 @@ export class EmployeePersonalDataComponent implements OnInit {
     this.currentcity = "Ambala";
     this.emergencycity = "Ambala";
     this.permanentcity = "Ambala";
+    }
+    else{
+      console.log("Incorrect");
+    }
+   
   };
 
 

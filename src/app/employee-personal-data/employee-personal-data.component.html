@@ -1,4 +1,32 @@
 <div class="main_container">
+
+  <div class="checkemp" style="margin-top: 30px;">
+
+    <div style="margin-bottom:22px ;">
+
+      <input type="checkbox"  (click)= "click()"> &nbsp; If previous employee
+
+      <br>
+
+      <br>
+
+      <div *ngIf="flag"  class="" style="display: flex" >
+
+        <p>Enter your employee ID</p>&nbsp;
+
+        <input type="text" name="" class="inpcheck" id="displayEmpID" formControlName="crosscheck" [(ngModel)]="empid" #username >
+
+        <button (click)="filldata(username.value)">Get</button>
+
+      </div>  
+
+     
+
+     
+
+
+
+    </div>
   <div class="legend-heading">
     <p>Personal Information</p>
     <hr />
@@ -1145,82 +1173,63 @@
       <h3>EQUITY AND DIVERSITY INFORMATION-CONFIDENTIAL</h3>
       <table class="borderless_table">
         <tr>
-          <td>
-            <!-- (click)="getGenderFromDb()" -->
-            <div class="input_box">
-              <select class="select" name="" id="" formControlName="gender">
-                <option value="">Select a Gender</option>
-                <option
-                  *ngFor="let gender of genderList"
-                  [ngValue]="gender.gender"
-                  (change)="changeGender($event)"
+          <div>
+            <td>
+              <!-- (click)="getGenderFromDb()" -->
+              <div class="input_box">
+                <select class="select" name="" id="" formControlName="gender" style="width: 450px;" >
+                  <!-- <option value="">Select a Gender</option> -->
+                  <!-- <option value="none" selected>Select a Gender</option> -->
+                  <option value="selected">Male</option>
+                  <option value="selected">Female</option>
+                  <option value="selected">Transgender</option>
+                  <option
+                    *ngFor="let gender of genderList"
+                    [ngValue]="gender.gender"
+                    (change)="changeGender($event)"
+                  >
+                    {{ gender.gender }}
+                  </option>
+                </select>
+                <label for="" class="date-label">
+                  Gender <span style="color: red">*</span>
+                </label>
+                <div
+                  class="validation_popup"
+                  *ngIf="
+                    (myReactiveForm.get('gender').invalid &&
+                      myReactiveForm.get('gender').touched) ||
+                    (submitted && myReactiveForm.get('gender').invalid)
+                  "
                 >
-                  {{ gender.gender }}
-                </option>
-              </select>
-              <label for="" class="date-label">
-                Gender <span style="color: red">*</span>
-              </label>
-              <div
-                class="validation_popup"
-                *ngIf="
-                  (myReactiveForm.get('gender').invalid &&
-                    myReactiveForm.get('gender').touched) ||
-                  (submitted && myReactiveForm.get('gender').invalid)
-                "
-              >
-                Please enter a valid Gender
+                  Please enter a valid Gender
+                </div>
               </div>
-            </div>
-          </td>
-
-          <td style="padding-left: 2rem">
-            <!-- <div class="input_box"> -->
-            Do you live with effects of an injury?
-            <input
-              type="radio"
-              name="isInjured"
-              value="true"
-              formControlName="isInjured"
-              (click)="isInjuredFcn($event)"
-            />Yes
-            <input
-              (click)="isInjuredFcn($event)"
-              type="radio"
-              name="isInjured"
-              value="false"
-              checked
-            />No
-            <!-- </div> -->
-          </td>
-
-          <td>
-            <div class="input_box">
-              <input type="text" formControlName="injuryDetails" required />
-              <label for=""> if yes please specify </label>
-            </div>
-          </td>
+            </td>
+          </div>
         </tr>
-
         <tr>
-          <td>
-            <!-- <div class="input_box"> -->
-            Do you live with effects of an illness?
-            <input
-              type="radio"
-              name="isIll"
-              value="true"
-              formControlName="isIll"
-              (click)="isIllFcn($event)"
-            />Yes <input type="radio" name="isIll" value="false" checked />No
-            <!-- </div> -->
-          </td>
+          <div>
+            <td>
+              <!-- <div class="input_box"> -->
+              Do you live with effects of an injury?
+              <input
+                type="radio"
+                name="isInjured"
+                value="true"
+                formControlName="isInjured"
+                (click)="isInjuredFcn($event)"
+                (click)="injury()"
+              />Yes
+               <input type="radio" name="isInjured" value="false" (click)="noinjury()" />No
+              <!-- </div> -->
+            </td>
 
-          <td>
-            <div class="input_box">
-              <input type="text" formControlName="illnessDetails" required />
-              <label for=""> if yes please specify </label>
-              <!-- <div
+            <td>
+              <div class="input_box" *ngIf="injurySpec">
+                <input type="text" formControlName="injuryDetails" required />
+                <label for=""> if yes please specify </label>
+                <!-- <div
                  class="validation_popup"
                  *ngIf="
                    (!myReactiveForm.get('illnessDetails')?.valid &&
@@ -1230,43 +1239,81 @@
                >
                  Please enter valid input
                </div> -->
-            </div>
-          </td>
-
-          <td style="padding-left: 2rem">
-            <!-- <div class="input_box"> -->
-            Do you live with effects of a disability?
-            <input
-              type="radio"
-              name="isDisabled"
-              value="true"
-              formControlName="isDisabled"
-              (click)="isDisabledFcn($event)"
-            />Yes
-            <input type="radio" name="isDisabled" value="false" checked />No
-            <!-- </div> -->
-          </td>
+              </div>
+            </td>
+          </div>
         </tr>
 
         <tr>
-          <td>
-            <div class="input_box">
-              <input type="text" formControlName="disabilityDetails" required />
-              <label for=""> if yes please specify </label>
-              <!-- <div
+          <div>
+            <td>
+              <!-- <div class="input_box"> -->
+              Do you live with effects of an illness?
+              <input
+                type="radio"
+                name="isIll"
+                value="true"
+                formControlName="isIll"
+                (click)="isIllFcn($event)"
+                (click)="illness()"
+              />Yes <input type="radio" name="isIll" value="false" (click)="noillness()" />No
+              <!-- </div> -->
+            </td>
+
+            <td>
+              <div class="input_box" *ngIf="illnessSpec">
+                <input type="text" formControlName="illnessDetails" required />
+                <label for=""> if yes please specify </label>
+                <!-- <div
                  class="validation_popup"
                  *ngIf="
-                   (!myReactiveForm.get('disabilityDetails')?.valid &&
-                     myReactiveForm.get('disabilityDetails').touched) ||
-                   (submitted && myReactiveForm.get('disabilityDetails').invalid)
+                   (!myReactiveForm.get('illnessDetails')?.valid &&
+                     myReactiveForm.get('illnessDetails').touched) ||
+                   (submitted && myReactiveForm.get('illnessDetails').invalid)
                  "
                >
                  Please enter valid input
                </div> -->
-            </div>
-          </td>
+              </div>
+            </td>
+          </div>
         </tr>
 
+
+        <tr>
+          <div>
+            <td>
+              <!-- <div class="input_box"> -->
+              Do you live with effects of a disability?
+              <input
+                type="radio"
+                name="isDisabled"
+                value="true"
+                formControlName="isDisabled"
+                (click)="isDisabledFcn($event)"
+                (click)="disability()"
+              />Yes <input type="radio" name="isDisabled" value="false" (click)="nodisability()" />No
+              <!-- </div> -->
+            </td>
+
+            <td>
+              <div class="input_box" *ngIf="disabilitySpec">
+                <input type="text" formControlName="disabilityDetails" required />
+                <label for=""> if yes please specify </label>
+                <div
+                 class="validation_popup"
+                 *ngIf="
+                   (!myReactiveForm.get('BloodGrp')?.valid &&
+                     myReactiveForm.get('BloodGrp').touched) ||
+                   (submitted && myReactiveForm.get('BloodGrp').invalid)
+                 "
+               >
+                 Please enter valid input
+               </div>
+              </div>
+            </td>
+          </div>
+        </tr>
         <tr>
           <td colspan="3">
             <div class="input_box">
@@ -1292,8 +1339,29 @@
         <tr>
           <td>
             <div class="input_box">
-              <input type="text" formControlName="BloodGrp" required />
-              <label for=""> Blood Group </label>
+              <!-- <input type="text" formControlName="BloodGrp" required />
+              <label for=""> Blood Group </label> -->
+              <select class="select" name="" id="" formControlName="BloodGrp" required>
+
+                <option value="selected">A+</option>
+                <option value="selected">A-</option>
+                <option value="selected">B+</option>
+                <option value="selected">B-</option>
+                <option value="selected">O+</option>
+                <option value="selected">O-</option>
+                <option value="selected">AB+</option>
+                <option value="selected">AB-</option>
+                <option
+                  *ngFor="let gender of genderList"
+                  [ngValue]="gender.gender"
+                  (change)="changeGender($event)"
+                >
+                  {{ gender.gender }}
+                </option>
+              </select>
+              <label for="" class="date-label">
+                Blood Group <span style="color: red">*</span>
+              </label>
               <div
                 class="validation_popup"
                 *ngIf="
@@ -1315,8 +1383,7 @@
               value="true"
               formControlName="isMedicalAlert"
               (click)="isMedicalAlertFcn($event)"
-            />Yes
-            <input type="radio" name="isMedicalAlert" value="false" checked />No
+            />Yes <input type="radio" name="isMedicalAlert" value="false" />No
           </td>
         </tr>
       </table>
