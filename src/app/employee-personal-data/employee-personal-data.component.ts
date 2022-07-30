@@ -181,21 +181,87 @@ export class EmployeePersonalDataComponent implements OnInit {
   //select option list
 
   currentStateId: number = 0;
-  statesList: State[] = [];
+  statesList: State[] = [
 
-  citiesList: City[] = [
     {
-      "id": 2,
-      "city": "Patiala",
-      "state_id": 2
+
+      id: 2,
+
+      state: 'Punjab',
+
     },
+
     {
-      "id": 3,
-      "city": "Bathinda",
-      "state_id": 2
-    }
+
+      id: 3,
+
+      state: 'Haryana',
+
+    },
+
+    {
+
+      id: 4,
+
+      state: 'Telangana',
+
+    },
+
   ];
 
+  citiesList: City[] = [
+
+    {
+
+      id: 2,
+
+      city: 'Patiala',
+
+      state_id: 2,
+
+    },
+
+    {
+
+      id: 3,
+
+      city: 'Bathinda',
+
+      state_id: 2,
+
+    },
+
+    {
+
+      id: 4,
+
+      city: 'Ambala',
+
+      state_id: 3,
+
+    },
+
+    {
+
+      id: 5,
+
+      city: 'Panipat',
+
+      state_id: 3,
+
+    },
+
+    {
+
+      id: 6,
+
+      city: 'Hyderabad',
+
+      state_id: 4,
+
+    },
+
+  ];
   genderList: Gender[] = [];
 
 
@@ -631,6 +697,51 @@ export class EmployeePersonalDataComponent implements OnInit {
       e.target.value = true;
     this.myReactiveForm.controls.isMedicalAlert?.setValue(e.target.value);
   }
+
+  currAddr:string;
+  permAddr: string;
+
+  currAddr1: string;
+
+  permAddr1: string;
+
+  currPin: number;
+
+  perPin: number;
+
+
+
+  updateAddr(event) {
+
+    if (event.target.checked) {
+
+      this.permAddr = this.currAddr;
+
+      this.permAddr1 = this.currAddr1;
+
+      this.perPin = this.currPin;
+
+      this.permanentstate = this.currentstate;
+
+      this.permanentcity = this.currentcity;
+
+    } else {
+
+      this.permAddr = '';
+
+      this.permAddr1 = '';
+
+      this.perPin = null;
+
+      this.permanentstate = '';
+
+      this.permanentcity = '';
+
+    }
+
+  }
+
+  check = false;
 
   // --------------------------------------------
   // request to service layer

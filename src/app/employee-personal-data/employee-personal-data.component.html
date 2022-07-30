@@ -211,7 +211,7 @@
         <tr>
           <td style="width: 30%">
             <div class="input_box">
-              <input formControlName="CAddress" type="text" required />
+              <input formControlName="CAddress" [(ngModel)]="currAddr" type="text" required />
               <label for="">
                 Address 1 <span style="color: red">*</span>
               </label>
@@ -231,7 +231,7 @@
 
           <td style="width: 30%">
             <div class="input_box">
-              <input formControlName="CAddress1" type="text" required />
+              <input formControlName="CAddress1" [(ngModel)]="currAddr1" type="text" required />
               <label for="">
                 Address 2 <span style="color: red">*</span>
               </label>
@@ -317,7 +317,7 @@
           </td>
           <td>
             <div class="input_box">
-              <input formControlName="CPinCode" id="PinCode" required />
+              <input formControlName="CPinCode" [(ngModel)]="currPin" id="PinCode" required />
               <label for=""> Pincode <span style="color: red">*</span> </label>
 
               <div
@@ -338,11 +338,28 @@
 
     <div class="form_container">
       <h3>PERMANENT ADDRESS</h3>
-      <table class="borderless_table">
+      <p>
+        <input
+          style="margin-right: 3px"
+
+          type="checkbox"
+
+          [checked]="check"
+
+
+
+          (change)="updateAddr($event)"
+
+          name="permanent_checkbox"
+
+        />Is your Permanent Address same as Current Address?
+
+      </p>
+      <table class="borderless_table" >
         <tr>
           <td style="width: 30%">
             <div class="input_box">
-              <input formControlName="PAddress" type="text" required />
+              <input formControlName="PAddress" [(ngModel)]="permAddr" type="text" required />
               <label for="">
                 Address 1 <span style="color: red">*</span>
               </label>
@@ -361,7 +378,7 @@
 
           <td style="width: 30%">
             <div class="input_box">
-              <input formControlName="PAddress1" type="text" required />
+              <input formControlName="PAddress1" [(ngModel)]="permAddr1" type="text" required />
               <label for="">
                 Address 2 <span style="color: red">*</span>
               </label>
@@ -445,7 +462,7 @@
           </td>
           <td>
             <div class="input_box">
-              <input formControlName="PinCode" type="number" required />
+              <input formControlName="PinCode" [(ngModel)]="perPin" type="number" required />
               <label for=""> Pincode <span style="color: red">*</span> </label>
 
               <div
