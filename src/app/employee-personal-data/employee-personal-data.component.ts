@@ -6,10 +6,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EmployeePersonalDataService } from './employee-personal-data.service'
 import { MaritalStatus } from './MaritalStatus';
 
-import { Observable } from 'rxjs';
+import { Observable, VirtualTimeScheduler } from 'rxjs';
 import { Gender } from './Gender';
 import { State } from './State';
 import { City } from './Citiy';
+import { Users } from './users';
+import { LocationStrategy } from '@angular/common';
+import { createInjectableType } from '@angular/compiler';
+import { cityState } from './cityState';
+//import { state } from '@angular/animations';
 
 
 
@@ -21,6 +26,10 @@ import { City } from './Citiy';
 export class EmployeePersonalDataComponent implements OnInit {
 
   title = 'official_project';
+  users: Users;
+  change() {
+    //this.City = this.City;
+  }
 
   constructor(private http: HttpClient, private userservice: EmployeePersonalDataService, private route: Router) { }
 
@@ -49,7 +58,8 @@ export class EmployeePersonalDataComponent implements OnInit {
 
   genderList: Gender[] = [];
 
-
+  cityState: cityState[];
+  // cityState.state="random";
 
   selectedState: any = '';
 
@@ -63,12 +73,51 @@ export class EmployeePersonalDataComponent implements OnInit {
 
   maritalStatusList: MaritalStatus[] = [];
 
+  public pinCode = '';
+
+  public EState = ' ';
+  public ECity = ' ';
   // --------------------------------------------
   // form group
   myReactiveForm: any = {};
   requestPayLoad: any = {};
 
+
+  getData(pin: any) {
+    //let val = this.myReactiveForm.get('unknown').value;
+    //alert(data);
+    this.userservice.getCityState(pin).subscribe((data: any) => {
+      //  this.myReactiveForm.get('city').value = data.city;
+      //console.log(data);
+      // console.log(data.city);
+      // this.myReactiveForm.controls.currentstate.setValue(data.state);
+      // alert(user1.City);
+
+      // this.cityState = data;
+      // console.log(this.cityState.push(data))
+      // this.City = data.city;
+      // window.location.reload();
+      // alert(this.City);
+      //alert(data.state);
+      // this.users.PState = JSON.stringify(data.state);
+      // this.users.PCity = JSON.stringify(data.city);
+      // var Scity = this.users.PCity;
+      // alert(Scity);
+      this.EState = data.state;
+      this.ECity = data.city;
+      // this.users.push(data);
+      console.log(this.EState);
+      console.log(this.ECity);
+    })
+
+  }
+
+
   ngOnInit() {
+
+
+
+
 
     // if (sessionStorage.getItem('emp_id') != null) {
     this.userservice.getMaritalStatusFromDb().subscribe(data => {
@@ -77,6 +126,7 @@ export class EmployeePersonalDataComponent implements OnInit {
       console.log(this.maritalStatusList)
     })
 
+    //this.getUserList();
 
     this.userservice.getGenderFromDb().subscribe(data => {
       this.genderList = data;
@@ -90,6 +140,7 @@ export class EmployeePersonalDataComponent implements OnInit {
 
 
     this.myReactiveForm = new FormGroup({
+
       FirstName: new FormControl(null, [
         Validators.pattern('[A-Za-z]{1,32}'),
         Validators.required,
@@ -132,6 +183,8 @@ export class EmployeePersonalDataComponent implements OnInit {
         Validators.minLength(10),
         Validators.maxLength(10),
       ]),
+      city: new FormControl(null, {}),
+      //state: new FormControl(null, {}),
 
       country: new FormControl({ value: null, disabled: true }),
       passport: new FormControl({ value: null, disabled: true }),
@@ -302,29 +355,77 @@ export class EmployeePersonalDataComponent implements OnInit {
       declarationCheckboxSecond: new FormControl(false, [Validators.required]),
       beingQualifiedCheckbox: new FormControl(false, [Validators.required]),
       otherConsentCheckbox: new FormControl(false, [Validators.required]),
+      pincode: new FormControl(null, [Validators.required]),
+
+      unknown: new FormControl(null, [Validators.required])
     });
 
-    this.filldata();
+    // this.filldata();
     // } else {
 
     // }
 
 
 
-
   }
+
+
 
   // --------------------------------------------
   // Request Payload
 
+  // getAdd() {
+
+  //   alert(this.myReactiveForm.get('pincode').value);
+
+  //   let url = "http://localhost:8080/hrmsController/GetCityAndStateByPincode?pincode=" + this.myReactiveForm.get('pincode').value;
+  //   alert(url);
+  //   this.http.get<any>(url)
+
+  //     .subscribe(function (val) {
+
+  //       // const [address] = val as any;
 
 
 
+  //       // this.finalAddress = address;
+
+  //       // console.log(this.finalAddress); // it returns multiple postOffices
+
+  //       // const postOffices = this.finalAddress.PostOffice;
+
+  //       // if (postOffices.length > 0) {
+
+  //       //   this.state = postOffices[0].State;
+
+  //       //   this.district = postOffices[0].District;
+
+  //       //   this.city = postOffices[0].Name;
+
+  //       // }
+
+  //       //MapUtils.deserialize(object, val);
+
+  //       alert(JSON.stringify(val.city));
+  //       alert(JSON.stringify(val.state));
+  //       var str = JSON.stringify(val.state);
+
+  //       this.State = JSON.stringify(val.state);
+  //       console.log(str);
+  //       //alert(str);
+  //       this.City = JSON.stringify(val.city);
+
+  //     });
+
+  // }
   // --------------------------------------------
   // disabled fields
+
+
   disabledFields() {
     this.myReactiveForm.controls.country.disable();
   }
+
 
   // --------------------------------------------
   // select options change functions
@@ -537,84 +638,26 @@ export class EmployeePersonalDataComponent implements OnInit {
 
 
 
-  filldata() {
-    this.myReactiveForm.controls.FirstName.setValue("Sahil");
-    this.myReactiveForm.controls.MaritalStatus.setValue("married");
-    this.myReactiveForm.controls.LastName.setValue("Rajpal");
-    this.myReactiveForm.controls.MiddleName.setValue("m");
-    this.myReactiveForm.controls.PhoneNumber.setValue("1234567890");
-    this.myReactiveForm.controls.CAddress.setValue("banjra");
-    this.myReactiveForm.controls.CAddress1.setValue("banjara2");
-    this.myReactiveForm.controls.PAddress.setValue("srilax");
-    this.myReactiveForm.controls.PAddress1.setValue("srilax2");
-    this.myReactiveForm.controls.CPinCode.setValue("133001");
-    this.myReactiveForm.controls.PinCode.setValue("500033");
-    this.myReactiveForm.controls.Email.setValue("shilkkr56@g.com");
-    this.myReactiveForm.controls.DOB.setValue("30-09-2001");
-    this.myReactiveForm.controls.email.setValue("shilkkr56@g.com");
-    this.myReactiveForm.controls.phone.setValue("1234567890");
-    this.myReactiveForm.controls.country.setValue("India");
-    this.myReactiveForm.controls.passport.setValue("J1239349");
-    this.myReactiveForm.controls.issueddate.setValue("21-12-2002");
-    this.myReactiveForm.controls.expirationdate.setValue("21-01-2013");
-    this.myReactiveForm.controls.issuedby.setValue("India");
-    this.myReactiveForm.controls.pan.setValue("ABCDE1234F");
-    this.myReactiveForm.controls.panname.setValue("Sahil");
-    this.myReactiveForm.controls.aadhar.setValue("4444 4444 4444");
-    this.myReactiveForm.controls.aadharname.setValue("Sahil");
-    this.myReactiveForm.controls.companyname.setValue("jocata");
-    this.myReactiveForm.controls.fromyr.setValue("2022");
-    this.myReactiveForm.controls.toyr.setValue("2012");
-    this.myReactiveForm.controls.designation.setValue("intern");
-    this.myReactiveForm.controls.location.setValue("hyderbad");
-    this.myReactiveForm.controls.qualification.setValue("MBA");
-    this.myReactiveForm.controls.major.setValue("major");
-    this.myReactiveForm.controls.Membership.setValue("membership");
-    this.myReactiveForm.controls.OrgMembership.setValue("OrgMembership");
-    this.myReactiveForm.controls.membershipdate.setValue("04-08-2002");
-    this.myReactiveForm.controls.honour.setValue("honour");
-    this.myReactiveForm.controls.honouraward.setValue("award");
-    this.myReactiveForm.controls.grantor.setValue("grantor");
-    this.myReactiveForm.controls.year.setValue("2011");
-    this.myReactiveForm.controls.currentstate.setValue("Haryana");
-    this.myReactiveForm.controls.currentcity.setValue("Bathinda");
-    this.myReactiveForm.controls.permanentstate.setValue("Haryana");
-    this.myReactiveForm.controls.permanentcity.setValue("Bathinda");
-    this.myReactiveForm.controls.institute.setValue("chitakra");
-    this.myReactiveForm.controls.yearReceived.setValue("2011");
-    this.myReactiveForm.controls.emergencyName.setValue("Jha");
-    this.myReactiveForm.controls.relation.setValue("bro");
-    this.myReactiveForm.controls.emergencyphone1.setValue("1234567890");
-    this.myReactiveForm.controls.emergencyphone2.setValue("1234567890");
-    this.myReactiveForm.controls.emergencystate.setValue("Haryana");
-    this.myReactiveForm.controls.qualificationstate.setValue("Bathinda");
-    this.myReactiveForm.controls.emergencycity.setValue("Bathinda");
-    this.myReactiveForm.controls.address1.setValue("banjara1");
-    this.myReactiveForm.controls.address2.setValue("banjara2");
-    this.myReactiveForm.controls.pin.setValue("500033");
-    this.myReactiveForm.controls.gender.setValue("male");
-    this.myReactiveForm.controls.isInjured.setValue("true");
-    this.myReactiveForm.controls.isIll.setValue("true");
-    this.myReactiveForm.controls.isDisabled.setValue("true");
-    this.myReactiveForm.controls.isMedicalAlert.setValue("true");
-    this.myReactiveForm.controls.BloodGrp.setValue("A+");
-    this.myReactiveForm.controls.injuryDetails.setValue("injury details");
-    this.myReactiveForm.controls.Healthinfo.setValue("health issues");
-    this.myReactiveForm.controls.illnessDetails.setValue("illness details");
-    this.myReactiveForm.controls.disabilityDetails.setValue("disability details");
-    this.myReactiveForm.controls.declarationCheckboxOne.setValue("true");
-    this.myReactiveForm.controls.declarationCheckboxSecond.setValue("true");
-    this.myReactiveForm.controls.beingQualifiedCheckbox.setValue("true");
-    this.myReactiveForm.controls.otherConsentCheckbox.setValue("true");
 
-    this.currentstate = "Haryana";
-    this.emergencystate = "Haryana";
-    this.permanentstate = "Haryana";
-    this.currentcity = "Ambala";
-    this.emergencycity = "Ambala";
-    this.permanentcity = "Ambala";
-  };
 
+
+  getUserList() {
+
+
+    //this.makePayLoad();
+
+    // let pincode = Number(this.myReactiveForm.get('unknown').value);
+
+
+    // alert(pincode);
+
+    // this.userservice
+    //   .getUsers(pincode)
+    //   .subscribe((data: any) => {
+    //     console.log(data);
+    //     this.users = data;
+    //   });
+  }
 
 
   //request payload is made from formGroup 
@@ -712,4 +755,15 @@ export class EmployeePersonalDataComponent implements OnInit {
     }
   }
 
+
+
+
 }
+
+
+
+
+function data(data: any) {
+  throw new Error('Function not implemented.');
+}
+

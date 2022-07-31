@@ -7,11 +7,13 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { EmployeePersonalDataComponent } from './employee-personal-data/employee-personal-data.component';
 import { HttpClientModule } from '@angular/common/http';
+import { InputTypeComponent } from './employee-personal-data/input-type.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EmployeePersonalDataComponent
+    EmployeePersonalDataComponent,
+    InputTypeComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,7 @@
+
 <div class="main_container">
+
+
   <div class="legend-heading">
     <p>Personal Information</p>
     <hr />
@@ -180,7 +183,7 @@
     <div class="form_container">
       <h3>Current ADDRESS</h3>
       <table class="borderless_table">
-        <tr>
+        <tr >
           <td style="width: 30%">
             <div class="input_box">
               <input formControlName="CAddress" type="text" required />
@@ -222,24 +225,32 @@
           </td>
 
           <td style="width: 30%">
-            <div class="input_box">
+            <div  appearance="fill" class="mat-form">
               <!-- (change)="getStatesFromDb()" -->
-              <select
+               <!-- <select
                 class="select"
-                name=""
+                 name=""
                 id=""
                 formControlName="currentstate"
                 [(ngModel)]="currentstate"
-                (change)="currentStateChange($event)"
-              >
-                <option value="" disabled>State</option>
-                <option
-                  *ngFor="let state of statesList"
-                  [ngValue]="state.state"
-                >
-                  {{ state.state }}
-                </option>
-              </select>
+                (change)="currentStateChange($event)" ></select>
+            
+              <select formControlName="currentstate"
+              [(ngModel)]="currentstate">
+                 <option value="" disabled>State</option> 
+               
+               <option
+               [(ngModel)]="currentstate">
+               {{EState}}
+               </option>
+               
+              </select> 
+
+              <input matInput [(ngModel)]="EState" />
+               -->
+               <input matInput [(ngModel)]="EState" value={{EState}} />
+               
+               <!-- <p>{{EState}}</p> -->
               <label for="" class="date-label">
                 State <span style="color: red">*</span>
               </label>
@@ -260,7 +271,9 @@
         <tr>
           <td>
             <div class="input_box">
-              <select
+
+              <!-- <h1>{{City}}</h1> -->
+              <!-- <select
                 class="select"
                 name=""
                 id=""
@@ -268,10 +281,10 @@
                 [(ngModel)]="currentcity"
               >
                 <option disabled>City</option>
-                <option *ngFor="let city of citiesList" [ngValue]="city.city">
-                  {{ city.city }}
-                </option>
-              </select>
+                
+
+              </select> -->
+              <input matInput [(ngModel)]="ECity" value={{ECity}}>
               <label for="" class="date-label">
                 City <span style="color: red">*</span>
               </label>
@@ -289,7 +302,10 @@
           </td>
           <td>
             <div class="input_box">
-              <input formControlName="CPinCode" id="PinCode" required />
+              
+              <input formControlName="unknown"  id="pincode" name="pincode" #pincode required />
+              <button (click)="getData(pincode.value)" >Get Data</button>
+            <!-- <h1> {{City}}</h1> -->
               <label for=""> Pincode <span style="color: red">*</span> </label>
 
               <div
@@ -305,7 +321,8 @@
             </div>
           </td>
         </tr>
-      </table>
+      </table> 
+
     </div>
 
     <div class="form_container">
@@ -313,7 +330,7 @@
       <table class="borderless_table">
         <tr>
           <td style="width: 30%">
-            <div class="input_box">
+            <div class="input_box" >
               <input formControlName="PAddress" type="text" required />
               <label for="">
                 Address 1 <span style="color: red">*</span>
@@ -352,8 +369,8 @@
           </td>
 
           <td style="width: 30%">
-            <div class="input_box">
-              <select
+            <div class="input_box" appearance="fill" class="mat-form">
+              <!-- <select
                 class="select"
                 name=""
                 id=""
@@ -367,7 +384,8 @@
                 >
                   {{ state.state }}
                 </option>
-              </select>
+              </select> -->
+              <input matInput [(ngModel)]="EState" value={{EState}}>
               <label for="" class="date-label">
                 State <span style="color: red">*</span>
               </label>
@@ -388,7 +406,7 @@
         <tr>
           <td>
             <div class="input_box">
-              <select
+              <!-- <select
                 class="select"
                 name=""
                 id=""
@@ -399,7 +417,8 @@
                 <option *ngFor="let city of citiesList" [ngValue]="city.city">
                   {{ city.city }}
                 </option>
-              </select>
+              </select> -->
+              <input matInput [(ngModel)]="ECity" value={{ECity}}>
               <label for="" class="date-label">
                 City <span style="color: red">*</span>
               </label>
@@ -417,18 +436,21 @@
           </td>
           <td>
             <div class="input_box">
-              <input formControlName="PinCode" type="number" required />
+              
+              <input formControlName="unknown"  id="pincode" name="pincode" #pincode required />
+              <button (click)="getData(pincode.value)" >Get Data</button>
+            <!-- <h1> {{City}}</h1> -->
               <label for=""> Pincode <span style="color: red">*</span> </label>
 
               <div
                 class="validation_popup"
                 *ngIf="
-                  (myReactiveForm.get('PinCode').invalid &&
-                    myReactiveForm.get('PinCode').touched) ||
-                  (submitted && myReactiveForm.get('PinCode').invalid)
+                  (myReactiveForm.get('CPinCode')?.invalid &&
+                    myReactiveForm.get('CPinCode')?.touched) ||
+                  (submitted && myReactiveForm.get('CPinCode').invalid)
                 "
               >
-                Please enter a valid Pincode
+                Please enter a valid Pincode!
               </div>
             </div>
           </td>

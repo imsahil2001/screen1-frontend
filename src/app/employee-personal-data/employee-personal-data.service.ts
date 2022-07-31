@@ -5,7 +5,8 @@ import { Observable } from 'rxjs';
 import { Gender } from './Gender';
 import { State } from './State';
 import { City } from './Citiy';
-
+import { Users } from './users';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class EmployeePersonalDataService {
   maritalStatusUrl = 'http://localhost:8081/batch1_controller/MaritalStatusList';
   getEmployeeeDataUrl = 'http://localhost:8080/batch1_controller/getEmployeeDetails';
   citiesUrl = 'http://localhost:8081/batch1_controller/commonutils/getCities?=';
-
+  PinCodefetchURL = 'http://localhost:8080/hrmsController/GetCityAndStateByPincode?pincode='
   // baseUrl = 'http://localhost:8080/hrmsController/employeeDetails/saveEmployeeDetails';
   // statesUrl = 'http://localhost:8080/hrmsController/StateList';
   // genderUrl = 'http://localhost:8080/hrmsController/GenderList';
@@ -38,6 +39,46 @@ export class EmployeePersonalDataService {
         console.log(response.emp_id);
         console.log(response);
       });
+  }
+  // getAdd() {
+  //   alert(this.myReactiveForm.get('pincode').value);
+
+  //   let url = "http://localhost:8080/hrmsController/GetCityAndStateByPincode?pincode=" + this.myReactiveForm.get('pincode').value;
+  //   alert(url);
+  //   this.http.get<any>(url)
+
+  //     .subscribe(function (val) {
+
+  //       const [address] = val as any;
+  //       this.finalAddress = address;
+  //       console.log(this.finalAddress); // it returns multiple postOffices
+  //       const postOffices = this.finalAddress.PostOffice;
+  //       if (postOffices.length > 0) {
+  //         this.state = postOffices[0].State;
+  //         this.district = postOffices[0].District;
+  //         this.city = postOffices[0].Name;
+  //       }
+  //       alert(JSON.stringify(val.city));
+  //       alert(JSON.stringify(val.state));
+  //       var str = JSON.stringify(val.state);
+
+  //       this.State = JSON.stringify(val.state);
+  //       console.log(str);
+  //       //alert(str);
+  //       this.City = JSON.stringify(val.city);
+  //     });
+
+  // }
+
+  getCityState(pincode) {
+
+    let url = this.PinCodefetchURL + pincode;
+    return this.http.get<Users>(url).
+      pipe(
+        map((data: Users) => {
+          return data;
+        })
+      )
   }
 
 
