@@ -1,0 +1,100 @@
+.leftline {
+    width: 3%;
+}
+
+.nomination-title {
+     width: 250px;
+     height: 35px; 
+     /* position: absolute; */
+            /* display: inline-block; */
+            /* left: 1%;
+            right: 1%;
+            top: 50%; */
+}
+
+.rightline {
+    width: 89%;
+}
+* {
+  font-size: 14px;
+}
+input {
+  outline: 0;
+  border-width: 0 0 2px;
+  border-color: #b8b7b7;
+  line-height: 2em;
+  padding: 0px;
+  
+}
+input::placeholder{
+  color: #a9a7a7;
+  font-size: 12px;
+}
+#container
+{
+    /* border: 1px solid; */
+    margin: auto;
+    padding: 10px;
+    /* box-shadow: 2px 2px 2px 2px lightgrey; */
+    width: 95%;
+  }
+
+#sno,#nomineename,#nomineerelationship,#nomineeaddress,#nomineeage,#nomineeper
+{
+    border : 1px solid black;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: groove;
+
+}
+.no-outline:focus {
+    outline: none;
+  }
+.nomination-input {
+    border : none;
+    border-radius:0px !important;
+    /* border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden; */
+    border-bottom: 1px solid black;
+}
+.form-control:focus {
+    box-shadow: none;
+  }
+
+table th
+{
+  text-align: center;
+  border: 1px solid #ccc;
+  color: #000;
+  font-weight: 500;
+  padding: 5px 15px;
+  font-size: 14px;
+  text-transform: uppercase;
+  box-sizing: border-box;
+  line-height: 17px; 
+}
+table
+{
+  text-align: center;
+}
+.btncontrol {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-primary {
+  background-color: #44a3df;
+}
+
+.btn-outline-primary {
+  color: #44a3df;
+  border-color: #44a3df;
+}
+
+.general-nominations-container{
+  padding-left: 3rem !important;  
+  padding-right: 3rem !important;  
+}

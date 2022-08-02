@@ -1,0 +1,122 @@
+  <!-- <br><br><br>
+    <body style="color:skyblue;">
+        <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CHECHLIST OF DOCUMENTS </h1>
+        <hr size="1" width="90%" color="blue"> 
+      
+       
+        </body> -->
+<div>
+  <h3 class="p-1" style="background-color: lightgrey">LIST OF DOCUMENTS</h3>
+</div>
+
+<form action="/action_page.php" style="padding: 18px;">
+  <input type="checkbox" id="1" name="1" value="false" (click)="onWorkProof()">
+  <label for="1"> Proof of your Total work experience: Offer letters,relieving letters / Service certificates, which clearly specified your date of joining as well as the last working day.</label><br>
+  <input type="checkbox" id="2" name="2" value="false" (click)="onLast6()">
+  <label for="2"> The last 6 month's Pay Slips and corresponding bank statements</label><br>
+  <input type="checkbox" id="3" name="3" value="fasle" (click)="onform16()">
+  <label for="3"> Form 16 from your current/previous empolyer-of the last FY </label><br>
+  <input type="checkbox" id="4" name="4" value="fasle" (click)="onRelievingLetter()">
+  <label for="4"> The Relieving letter from your last employer-if you are not employed now</label><br>
+  <input type="checkbox" id="onOfferLetterCurrentOrganization" name="onOfferLetterCurrentOrganization" value="fasle"  (click)="onOfferLetterCurrentOrganization()">
+  <label for="5"> Offer letter specifying the DOJ at your current organization</label><br>
+  <input type="checkbox" id="6" name="6" value="fasle" (click)="onSalaryProof()">
+  <label for="6"> Proof of the recent salary hike,viz. Letter or email,if any</label><br>
+  <input type="checkbox" id="7" name="7" value="fasle" (click)="onQualification()">
+  <label for="7"> Qualification:Proof of the same,as applicable</label><br>
+  <input type="checkbox" id="AnyID" name="AnyID" value="fasle" (click)="onAnyId()">
+  <label for="8"> Passport / Aadhar and PAN card(mandatory)</label><br>
+</form>
+<br>
+<div style="color:skyblue;">
+
+    &nbsp;&nbsp;  &nbsp;&nbsp;  <input hidden type="file" name="file" id="file"  />
+    <label ><a (click)="onUpload()">Upload file</a></label>
+    <!-- <input class="form-control" type="file" 
+            (change)="onChange($event)">
+  
+    <a (click)="onUpload()" 
+>        Upload</a> -->
+    
+</div>
+<br><br>
+<table style="width: 100%;">
+    <tr>
+      <th>DOCUMENT<br><br>NAME</th>
+      <!-- <th>UPLOADED<br><br>BY</th> -->
+      <th>DATE<br><br>TIME</th>
+      <th>SIZE</th>
+      <th>PREVIEW</th>
+      <th>ACTIONS</th>
+    </tr>
+    <tr class="blank_row">
+      <!-- <td colspan="10"> <input hidden type="file" name="file" id="file"  /> -->
+        <!-- <label for="file"><a><u>Select files</u></a></label></td> -->
+        <td>
+        <select name="document_type" id="document_type" #doctype (change)="onSelect(doctype.value)">
+          <option value="">--Select--</option>
+          <option value="1">Offer letter of previous employer</option>
+          <option value="2">Relieving letter of previous employer</option>
+          <option value="3">Service certificates of previous employer</option>
+          <option value="4">Last 6th month pay slip</option>
+          <option value="5">Last 5th month pay slip</option>
+          <option value="6">Last 4th month pay slip</option>
+          <option value="7">Last 3rd month pay slip</option>
+          <option value="8">Last 2nd month pay slip</option>
+          <option value="9">Last 1st v month pay slip</option>
+          <option value="10">Form 16 from your current or previous employer</option>
+          <option value="11">Relieving Letter from your last employer if you are not employed right now</option>
+          <option value="12">Offer Letter specifying the date of joining at your current organization</option>
+          <option value="13">Proof of recent salary hike,viz letter or email,if any</option>
+          <option value="14">Bachelor Certificate/Degree Certificate</option>
+          <option value="15">Bachelor/Degree Provisional Certificate</option>
+          <option value="16">Bachelor Certificate</option>
+          <option value="17">PG Certificate</option>
+          <option value="18">PG Provisional Certificate</option>
+          <option value="19">PASSPORT</option>
+          <option value="20">Aadhar</option>
+          <option value="21">PAN CARD</option>
+        </select>
+        <br><br>
+        <!-- <input type="submit" value="Submit" >
+        <input type="text" value="{{document_type}}"> -->
+        <!-- <label for="file"><a><u>Select files</u></a></label> -->
+        <input type="file" id="file" #files
+    (change)="getFileDetails($event)"
+    style="margin: 8px;
+        padding: 8px 5px;
+        color: #333;
+        width: auto;
+        cursor: pointer;"
+>
+      </td>
+       <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <!-- <td></td> -->
+    </tr>
+    <tr *ngFor="let doc of docList;">  
+      <td *ngIf="doc.name!='fake'">{{doc.name}}</td>  
+      <td *ngIf="doc.name!='fake'">{{doc.updatedDate}}</td>  
+      <td *ngIf="doc.name!='fake'">{{doc.size}}</td>  
+      <td *ngIf="doc.name!='fake'">Not available</td> 
+      <td *ngIf="doc.name!='fake'">
+        <a (click)="onDownload(doctype.value)">Download</a>
+        <br>
+        <a hidden>Update</a>
+      </td> 
+    </tr>
+  </table>
+  <br><br>
+<br>
+  <div class="col-sm-3" >
+    <button type="button" class="btn btn-outline-primary exit">EXIT</button>
+</div>
+<div class="col-sm">
+    <button type="button" class="btn btn-primary save">SAVE</button>&nbsp;&nbsp;
+    <button type="button" class="btn btn-primary continue" (click)="saveandcontinue()">SAVE AND CONTINUE</button>
+</div>
+
+
+

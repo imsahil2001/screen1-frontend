@@ -1,0 +1,298 @@
+ .box
+{
+    height: 600px;
+    /* box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2) */
+}
+
+.gn{
+    text-align: left;
+    background-color:lightgrey;
+    
+}
+.table1
+{
+    border: 1px solid #ccc;
+color: #000;
+font-weight: 500px;
+padding: 5px 15px;
+font-size: 14px;
+text-transform: uppercase; 
+box-sizing: border-box;
+line-height: 17px;
+}
+.table1,td,th{
+    border: 1px solid #ddd;
+    text-align: left;
+    font-weight: 500px;
+}
+td,tr{
+    height: 40px;
+}
+th{
+    height: 30px;
+    text-align: center;
+
+}
+.table1{
+    border-collapse: collapse;
+    width: 100%;
+}
+.table2
+{
+    
+    border-collapse: collapse;
+    width: 50%;
+    border: 1px solid #ccc;
+color: #000;
+font-weight: 500;
+padding: 5px 15px;
+font-size: 14px;
+text-transform: uppercase;
+box-sizing: border-box;
+line-height: 17px;
+}
+.table2 th{
+    padding: 10px;
+}
+.doc{
+    width: 80%;
+    text-align: left;
+    padding: 10px;   
+}
+#box2
+{
+ position: fixed;
+ bottom: 20px;
+ right: 10px;
+}
+.save
+{
+    background-color: #31B0D5;
+    color: white;
+    padding: 10px 20px;
+    margin-bottom: 16px;
+    border-color: #46b8da;
+}
+.continue
+{
+    background-color: #31B0D5;
+    color: white;
+    padding: 10px 20px;
+    margin-bottom: 16px;
+    border-color: #46b8da;
+}
+#box3
+{
+    position: fixed;
+    bottom: 10px;
+    left: 10px;   
+}
+.exit
+{
+    background-color: transparent;
+    color: #31B0D5;
+    padding: 10px 20px;
+    margin-bottom: 16px;
+    border-color: #46b8da;
+} 
+
+
+#dbtn {
+  border-radius: 10%;
+}
+.dwnd {
+  height: 20px;
+  width: 20px;
+}
+
+
+
+
+/* .maindiv{
+    overflow: hidden;
+  }
+  
+  
+  .firsttable{
+    width: 95%;
+    margin-left: 2%;
+    margin-top: 2%;
+  
+  }
+  
+  
+  .firsttable th{
+    padding: 15px 25px 15px 25px;
+    text-align: center;
+  }
+  .firsttable td{
+    text-align: center;
+  }
+  
+  .firsttable input {
+    outline: 0;
+    border-width: 0 0 1px ;
+    border-color: black;
+  }
+  
+  .firsttable input:focus {
+    border-color: skyblue;
+  }
+  
+  .firsttable .sth1{
+    width: 15%;
+  }
+  
+  .firsttable .sth2{
+    text-align: left;
+  }
+  
+  h2{
+    background-color: lightgrey;
+    font-size: 20px;
+    margin-left: -3%;
+  }
+  
+  h3{
+    font-size: 15px;
+    margin-left: 4%;
+    color: skyblue;
+  }
+  
+  .secondtable{
+    float: left;
+    width: 30%;
+    margin-left: 4%;
+  }
+  
+  .secondtable th{
+    padding: 15px 25px 15px 25px;
+    text-align: center;
+  }
+  
+  .secondtable .sfiles{
+    text-align: left;
+  }
+  
+  .button-6 {
+    margin-left: 4%;
+    margin-top: 10%;
+    align-items: center;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: skyblue;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    border-color: skyblue;
+    min-height: 3rem;
+    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+    position: relative;
+    text-decoration: none;
+    transition: all 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    width: auto;
+  }
+  
+  .button-6:hover{
+    background-color: skyblue;
+  }
+  
+  
+  .button-6:hover,
+  .button-6:focus {
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    color: rgba(0, 0, 0, 0.65);
+  }
+  
+  .button-6:hover {
+    transform: translateY(-1px);
+  }
+  
+  .button-6:active {
+    background-color: #F0F0F1;
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+    color: rgba(0, 0, 0, 0.65);
+    transform: translateY(0);
+  }
+  
+  
+  .button-7{
+    margin-left: 60%;
+    margin-top: 10%;
+    align-items: center;
+    background-color: skyblue;
+    border: none;
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: white;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    border-color: skyblue;
+    min-height: 3rem;
+    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+    position: relative;
+    text-decoration: none;
+    transition: all 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    width: auto;
+  }
+  
+  .button-7:hover{
+    background-color: blue;
+  }
+  
+  .button-8{
+    margin-left: 5%;
+    margin-top: 5%;
+    align-items: center;
+    background-color: skyblue;
+    border: none;
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: white;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    border-color: skyblue;
+    min-height: 3rem;
+    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+    position: relative;
+    text-decoration: none;
+    transition: all 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    width: auto;
+  }
+  
+  .button-8:hover{
+    background-color: blue;
+  } */

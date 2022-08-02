@@ -1,0 +1,424 @@
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+  crossorigin="anonymous"
+/>
+
+<script
+  src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+  integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+  integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+  crossorigin="anonymous"
+></script>
+
+<form
+  [formGroup]="nomineeForm"
+  novalidate
+  class="form-group pb-3 general-nominations-container"
+  (ngSubmit)="submitForm()"
+>
+  <div id="container ">
+    <div class="d-flex">
+      <div class="leftline border-bottom border-primary px-3 py-1"></div>
+      <div
+        class="nomination-title border-top border-start border-end border-primary px-3 text-center text-primary text-uppercase"
+      >
+        GENERAL-NOMINATIONS
+      </div>
+      <div class="rightline border-bottom border-primary px-3 py-1"></div>
+    </div>
+    <br />
+    <div>
+      <h5 style="background-color: lightgrey">GENERAL NOMINATIONS</h5>
+    </div>
+
+    <div>
+      <div>
+        <label>
+          <input
+            #checkbox1
+            id="checkbox1"
+            type="checkbox"
+            [checked]="checked1"
+            (change)="oncheck1(checkbox1.checked)"
+            formControlName="box"
+            required
+          />
+          I hereby nominate the person(s) mentioned below who is/are
+          member(s)/non-member(s) of my family to recieve the amount that may
+          stand to my credit in the event of any unfortunate incident / in the
+          event of my death as the amount has become payable or having become
+          payable has not been paid
+          <div
+            style="color: red"
+            class="div1"
+            *ngIf="!box?.valid && (box?.dirty || box?.touched)"
+          >
+            Required Field
+          </div>
+        </label>
+      </div>
+      <br />
+      <div style="overflow-x: auto">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">S.NO.</th>
+              <th scope="col">FULL NAME OF THE NOMINEE</th>
+              <th scope="col">FULL ADDRESS OF THE NOMINEE</th>
+              <th scope="col">RELATIONSHIP WITH THE EMPLOYEE</th>
+              <th scope="col">AGE OF THE NOMINEE(S)</th>
+              <th scope="col">SHARE PAYABLE TO EACH NOMINEE (PERCENTAGE)</th>
+              <th scope="col">OCCUPATION</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td scope="row">
+                <input
+                  id="sno"
+                  class="no-outline"
+                  type="text"
+                  inputmode="numeric"
+                  name="sno"
+                  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                  formControlName="sno"
+                  required
+                />
+                <div *ngFor="let validation of validationMessages.sno">
+                  <div
+                    *ngIf="
+                      nomineeForm.get('sno').hasError(validation.type) &&
+                      (nomineeForm.get('sno').dirty ||
+                        nomineeForm.get('sno').touched)
+                    "
+                  >
+                    <small style="color: red">{{ validation.message }}</small>
+                  </div>
+                </div>
+              </td>
+              <td scope="row">
+                <input
+                  id="nomineename"
+                  class="no-outline"
+                  type="text"
+                  name="nomineename"
+                  formControlName="nomineename"
+                  required
+                />
+                <div *ngFor="let validation of validationMessages.nomineename">
+                  <div
+                    *ngIf="
+                      nomineeForm
+                        .get('nomineename')
+                        .hasError(validation.type) &&
+                      (nomineeForm.get('nomineename').dirty ||
+                        nomineeForm.get('nomineename').touched)
+                    "
+                  >
+                    <small style="color: red">{{ validation.message }}</small>
+                  </div>
+                </div>
+              </td>
+              <td scope="row">
+                <input
+                  id="nomineeaddress"
+                  class="no-outline"
+                  type="text"
+                  name="nomineeaddress"
+                  formControlName="nomineeaddress"
+                  required
+                />
+                <div
+                  *ngFor="let validation of validationMessages.nomineeaddress"
+                >
+                  <div
+                    *ngIf="
+                      nomineeForm
+                        .get('nomineeaddress')
+                        .hasError(validation.type) &&
+                      (nomineeForm.get('nomineeaddress').dirty ||
+                        nomineeForm.get('nomineeaddress').touched)
+                    "
+                  >
+                    <small style="color: red">{{ validation.message }}</small>
+                  </div>
+                </div>
+              </td>
+              <td scope="row">
+                <input
+                  id="nomineerelationship"
+                  class="no-outline"
+                  type="text"
+                  name="nomineerelationship"
+                  formControlName="nomineerelationship"
+                  required
+                />
+                <div
+                  *ngFor="
+                    let validation of validationMessages.nomineerelationship
+                  "
+                >
+                  <div
+                    *ngIf="
+                      nomineeForm
+                        .get('nomineerelationship')
+                        .hasError(validation.type) &&
+                      (nomineeForm.get('nomineerelationship').dirty ||
+                        nomineeForm.get('nomineerelationship').touched)
+                    "
+                  >
+                    <small style="color: red">{{ validation.message }}</small>
+                  </div>
+                </div>
+              </td>
+              <td scope="row">
+                <input
+                  id="nomineeage"
+                  class="no-outline"
+                  type="text"
+                  name="nomineeage"
+                  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                  maxlength="2"
+                  formControlName="nomineeage"
+                  required
+                />
+                <div *ngFor="let validation of validationMessages.nomineeage">
+                  <div
+                    *ngIf="
+                      nomineeForm.get('nomineeage').hasError(validation.type) &&
+                      (nomineeForm.get('nomineeage').dirty ||
+                        nomineeForm.get('nomineeage').touched)
+                    "
+                  >
+                    <small style="color: red">{{ validation.message }}</small>
+                  </div>
+                </div>
+              </td>
+              <td scope="row">
+                <input
+                  id="nomineeper"
+                  class="no-outline"
+                  type="text"
+                  name="nomineeper"
+                  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                  maxlength="2"
+                  formControlName="nomineeper"
+                  required
+                />
+                <div *ngFor="let validation of validationMessages.nomineeper">
+                  <div
+                    *ngIf="
+                      nomineeForm.get('nomineeper').hasError(validation.type) &&
+                      (nomineeForm.get('nomineeper').dirty ||
+                        nomineeForm.get('nomineeper').touched)
+                    "
+                  >
+                    <small style="color: red">{{ validation.message }}</small>
+                  </div>
+                </div>
+              </td>
+              <td scope="row">
+                <input
+                  id="nomineeoccupation"
+                  class="no-outline"
+                  type="text"
+                  name="nomineeoccupation"
+                  formControlName="nomineeoccupation"
+                  required
+                />
+                <div
+                  *ngFor="
+                    let validation of validationMessages.nomineeoccupation
+                  "
+                >
+                  <div
+                    *ngIf="
+                      nomineeForm
+                        .get('nomineeoccupation')
+                        .hasError(validation.type) &&
+                      (nomineeForm.get('nomineeoccupation').dirty ||
+                        nomineeForm.get('nomineeoccupation').touched)
+                    "
+                  >
+                    <small style="color: red">{{ validation.message }}</small>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="row">
+          <div class="col-4 form-floating mb-3 mt-3">
+            <input
+              placeholder="Date"
+              class="textbox-n nomination-input form-control"
+              type="text"
+              onfocus="(this.type = 'date')"
+              id="date"
+              name="date"
+              formControlName="date"
+              required
+            />
+            <!-- <input type="date" class="reference-input form-control" id="date"
+                        placeholder="date" name="date"> -->
+            <div
+              style="color: red"
+              class="div1"
+              *ngIf="!date?.valid && (date?.dirty || date?.touched)"
+            >
+              Date is required
+            </div>
+            <label for="date" class="text-secondary"
+              >Date <span class="text-danger">*</span></label
+            >
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4 form-floating mb-3 mt-3">
+            <input
+              type="text"
+              class="nomination-input form-control"
+              id="witness1"
+              placeholder="Name of Wittness 1"
+              name="witness1"
+              formControlName="witness1"
+              required
+            />
+            <div *ngFor="let validation of validationMessages.witness1">
+              <div
+                *ngIf="
+                  nomineeForm.get('witness1').hasError(validation.type) &&
+                  (nomineeForm.get('witness1').dirty ||
+                    nomineeForm.get('witness1').touched)
+                "
+              >
+                <small style="color: red">{{ validation.message }}</small>
+              </div>
+            </div>
+            <label for="witness1" class="text-secondary"
+              >Name of Witness 1 <span class="text-danger">*</span></label
+            >
+          </div>
+          <div class="col-4 form-floating mb-3 mt-3">
+            <input
+              type="text"
+              class="nomination-input form-control"
+              id="witness2"
+              placeholder="Name of Wittness 2 "
+              name="witness2"
+              formControlName="witness2"
+              required
+            />
+            <div *ngFor="let validation of validationMessages.witness2">
+              <div
+                *ngIf="
+                  nomineeForm.get('witness2').hasError(validation.type) &&
+                  (nomineeForm.get('witness2').dirty ||
+                    nomineeForm.get('witness2').touched)
+                "
+              >
+                <small style="color: red">{{ validation.message }}</small>
+              </div>
+            </div>
+            <label for="witness2" class="text-secondary"
+              >Name of Witness 2 <span class="text-danger">*</span></label
+            >
+          </div>
+        </div>
+        <br />
+        <div>
+          <label>
+            <input
+              #checkbox2
+              id="checkbox2"
+              type="checkbox"
+              [checked]="checked2"
+              (change)="oncheck2(checkbox2.checked)"
+              formControlName="box1"
+              required
+            />
+            I hereby declare that the above mentioned nominees can receive the
+            amount that may stand to my credit in the event of any unfortunate
+            incident/in the event of my death
+            <div
+              style="color: red"
+              class="div1"
+              *ngIf="!box1?.valid && (box1?.dirty || box1?.touched)"
+            >
+              Required Field
+            </div></label
+          >
+        </div>
+        <br />
+        <!-- <div class="row ">
+                <div class="col-4 form-floating mb-3 mt-3">
+                    <input type="text" class="nomination-input form-control" id="employeename"
+                        placeholder="Employee Name" name="employeename" formControlName="employeename" required>
+                        <div style="color: red;"class="div1" *ngIf="!employeename?.valid && (employeename?.dirty ||employeename?.touched)">
+                            Employee Name is required
+                          </div>
+                        <label for="employeename" class="text-secondary">Employee Name<span class="text-danger">*</span></label>
+                </div>
+                <div class="col-4 form-floating mb-3 mt-3">
+                    <input type="text"
+                        class="nomination-input form-control"
+                        id="employeeid" placeholder="Employee ID " name="employeeid" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="5" formControlName="employeeid" required>
+                        <div *ngFor="let validation of validationMessages.employeeid">
+                            <div
+                                *ngIf="nomineeForm.get('employeeid').hasError(validation.type) && (nomineeForm.get('employeeid').dirty || nomineeForm.get('employeeid').touched)">
+                                <small style="color:red;">{{validation.message}}</small>
+                            </div>
+                        </div>
+                    <label for="employeeid" class="text-secondary">Employee ID <span class="text-danger">*</span></label>
+                </div>
+                <div class="col-4 form-floating mb-3 mt-3">
+                    <input type="text"
+                        class="nomination-input form-control"
+                        id="designation" placeholder="Designation" name="designation" formControlName="designation" required>
+                        <div *ngFor="let validation of validationMessages.designation">
+                            <div
+                                *ngIf="nomineeForm.get('designation').hasError(validation.type) && (nomineeForm.get('designation').dirty || nomineeForm.get('designation').touched)">
+                                <small style="color:red;">{{validation.message}}</small>
+                            </div>
+                        </div>
+                    <label for="designation" class="text-secondary">Designation <span class="text-danger">*</span></label>
+                </div>
+            </div> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="m-3 btncontrol">
+    <div>
+      <button type="button" class="btn btn-outline-primary rounded-0 m-1">
+        EXIT
+      </button>
+    </div>
+    <!--  -->
+    <div>
+      <button
+        type="submit"
+        class="btn btn-primary rounded-0 m-1"
+        [disabled]="!nomineeForm.valid"
+      >
+        SAVE
+      </button>
+      <button
+        type="button"
+        class="btn btn-primary rounded-0 m-1"
+        [disabled]="!nomineeForm.valid"
+        (click)="onNext()"
+      >
+        SAVE & CONTINUE
+      </button>
+    </div>
+  </div>
+</form>

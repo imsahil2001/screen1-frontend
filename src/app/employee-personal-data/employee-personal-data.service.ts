@@ -12,21 +12,21 @@ import { map } from 'rxjs';
   providedIn: 'root'
 })
 export class EmployeePersonalDataService {
-  baseUrl = 'http://localhost:8081/batch1_controller/saveEmployeeDetails';
-  statesUrl = 'http://localhost:8081/batch1_controller/StateList';
-  genderUrl = 'http://localhost:8081/batch1_controller/GenderList';
-  maritalStatusUrl = 'http://localhost:8081/batch1_controller/MaritalStatusList';
-  getEmployeeeDataUrl = 'http://localhost:8080/batch1_controller/getEmployeeDetails';
-  citiesUrl = 'http://localhost:8081/batch1_controller/commonutils/getCities?=';
+  baseUrl = 'http://localhost:8080/hrmsController/employeeDetails/saveEmployeeDetails';
+  // baseUrl = 'http://localhost:8081/batch1_controller/saveEmployeeDetails';
+  // statesUrl = 'http://localhost:8081/batch1_controller/StateList';
+  statesUrl = 'http://localhost:8080/hrmsController/StateList';
+  citiesUrl = 'http://localhost:8080/hrmsController/getCityListbyState?state=';
+  // genderUrl = 'http://localhost:8081/batch1_controller/GenderList';
+  genderUrl = 'http://localhost:8080/hrmsController/GenderList';
+  // maritalStatusUrl = 'http://localhost:8081/batch1_controller/MaritalStatusList';
+  maritalStatusUrl = 'http://localhost:8080/hrmsController/MaritalStatusList';
   PinCodefetchURL = 'http://localhost:8080/hrmsController/GetCityAndStateByPincode?pincode='
-  // baseUrl = 'http://localhost:8080/hrmsController/employeeDetails/saveEmployeeDetails';
-  // statesUrl = 'http://localhost:8080/hrmsController/StateList';
-  // genderUrl = 'http://localhost:8080/hrmsController/GenderList';
-  // maritalStatusUrl = 'http://localhost:8080/hrmsController/MaritalStatusList';
-  // getUrl = 'http://localhost:8080/hrmsController/MaritalStatusList';
 
 
   constructor(private http: HttpClient) { }
+
+
 
   savePersonalDetails(data: any) {
 
@@ -40,35 +40,6 @@ export class EmployeePersonalDataService {
         console.log(response);
       });
   }
-  // getAdd() {
-  //   alert(this.myReactiveForm.get('pincode').value);
-
-  //   let url = "http://localhost:8080/hrmsController/GetCityAndStateByPincode?pincode=" + this.myReactiveForm.get('pincode').value;
-  //   alert(url);
-  //   this.http.get<any>(url)
-
-  //     .subscribe(function (val) {
-
-  //       const [address] = val as any;
-  //       this.finalAddress = address;
-  //       console.log(this.finalAddress); // it returns multiple postOffices
-  //       const postOffices = this.finalAddress.PostOffice;
-  //       if (postOffices.length > 0) {
-  //         this.state = postOffices[0].State;
-  //         this.district = postOffices[0].District;
-  //         this.city = postOffices[0].Name;
-  //       }
-  //       alert(JSON.stringify(val.city));
-  //       alert(JSON.stringify(val.state));
-  //       var str = JSON.stringify(val.state);
-
-  //       this.State = JSON.stringify(val.state);
-  //       console.log(str);
-  //       //alert(str);
-  //       this.City = JSON.stringify(val.city);
-  //     });
-
-  // }
 
   getCityState(pincode) {
 
@@ -81,18 +52,19 @@ export class EmployeePersonalDataService {
       )
   }
 
+  getCityListByState(state: string) {
+    return this.http.get<City[]>(`${this.citiesUrl}${state}`);
+  }
 
+  dummy: any = '';
+  // getStatesFromDb(): Observable<State[]> {
   getStatesFromDb() {
     return this.http.get<State[]>(this.statesUrl);
   }
 
-  getEmployeeDataFromDb() {
-    return this.http.get<State[]>(this.getEmployeeeDataUrl)
-  }
-
-  getCitiesFromState(stateId: Number): Observable<City[]> {
-    return this.http.get<City[]>(`${this.citiesUrl}?stateId=${stateId}`);
-  }
+  // getCitiesFromState(stateId: Number): Observable<City[]> {
+  //   return this.http.get<City[]>(`${this.citiesUrl}?stateId=${stateId}`);
+  // }
 
   public getMaritalStatusFromDb(): Observable<MaritalStatus[]> {
     return this.http.get<MaritalStatus[]>(this.maritalStatusUrl);

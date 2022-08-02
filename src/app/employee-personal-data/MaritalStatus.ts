@@ -1,5 +1,5 @@
 export interface MaritalStatus {
    id: number;
-   maritalStatus: string,
-   // martialStatus: string,
+   // maritalStatus: string,
+   martialStatus: string,
 }

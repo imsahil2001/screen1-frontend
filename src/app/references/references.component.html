@@ -1,0 +1,326 @@
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+  crossorigin="anonymous"
+/>
+
+<script
+  src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+  integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+  integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+  crossorigin="anonymous"
+></script>
+
+<div class="container-fluid references-container">
+  <div class="main-cont" style="height: 75vh">
+    <div class="d-flex reference-header pb-2">
+      <div class="line-left border-bottom border-primary px-3 py-1"></div>
+      <div
+        class="reference-header-title border-top border-start border-end border-primary px-3 py-1 text-center text-primary text-uppercase"
+      >
+        References
+      </div>
+      <div class="line-right border-bottom border-primary px-3 py-1"></div>
+    </div>
+    <div class="p-3 pt-1">
+      <p class="heading1">&nbsp;REFERENCE 1</p>
+      <form
+        #refForm="ngForm"
+        (ngSubmit)="onAddReference(refForm, $event.submitter.id)"
+        id="ref-Form"
+        [formGroup]="contactForm"
+      >
+        <div class="form-row">
+          <div class="row">
+            <div class="col-4 form-floating">
+              <input
+                type="text"
+                class="form-control reference-input form-control-sm"
+                id="name"
+                name="name"
+                formControlName="name"
+                placeholder="Name"
+                ngModel="{{ references[0]?.name }}"
+              />
+              <label for="name" class="text-secondary"
+                >Name&nbsp;<span class="text-danger">*</span></label
+              >
+              <div
+                class="div1 text-danger"
+                *ngIf="
+                  !name?.valid && (name?.dirty || name?.touched);
+                  else elseBlock
+                "
+              >
+                Enter a Valid Name
+              </div>
+            </div>
+            <div class="col-4 form-floating">
+              <input
+                type="text"
+                class="form-control reference-input form-control-sm"
+                id="designation"
+                name="designation"
+                placeholder="Designation"
+                formControlName="designation"
+                ngModel="{{ references[0].designation }}"
+              />
+              <label for="designation" class="text-secondary"
+                >Designation&nbsp;<span class="text-danger">*</span></label
+              >
+              <div
+                class="div1 text-danger"
+                *ngIf="
+                  !designation?.valid &&
+                    (designation?.dirty || designation?.touched);
+                  else elseBlock
+                "
+              >
+                Designation is Mandatory
+              </div>
+              <ng-template #elseBlock><br /></ng-template>
+            </div>
+            <div class="col-4 form-floating">
+              <input
+                type="text"
+                class="form-control reference-input"
+                id="company"
+                name="company"
+                placeholder="Company"
+                formControlName="company"
+                ngModel="{{ references[0].company }}"
+              />
+              <label for="company" class="text-secondary"
+                >Company&nbsp; <span class="text-danger">*</span></label
+              >
+              <div
+                class="div1 text-danger"
+                *ngIf="
+                  !company?.valid && (company?.dirty || company?.touched);
+                  else elseBlock
+                "
+              >
+                Company is Mandatory
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="row pb-2">
+            <div class="col-4 form-floating">
+              <input
+                type="text"
+                class="form-control reference-input"
+                id="email"
+                name="email"
+                placeholder="email"
+                formControlName="email"
+                ngModel="{{ references[0].email }}"
+              />
+              <label for="email" class="text-secondary"
+                >Email&nbsp; <span class="text-danger">*</span></label
+              >
+              <div
+                class="div1 text-danger"
+                *ngIf="
+                  !email?.valid && (email?.dirty || email?.touched);
+                  else elseBlock
+                "
+              >
+                Enter Valid Email Address
+              </div>
+            </div>
+            <div class="col-4 form-floating">
+              <input
+                type="number"
+                class="form-control reference-input"
+                id="phno"
+                name="phno"
+                placeholder="Phone Number"
+                formControlName="phno"
+                ngModel="{{ references[0].phno }}"
+              />
+              <label for="phno" class="text-secondary"
+                >Phone Number &nbsp;<span class="text-danger">*</span></label
+              >
+              <div
+                class="div1 text-danger"
+                *ngIf="
+                  !phno?.valid && (phno?.dirty || phno?.touched);
+                  else elseBlock
+                "
+              >
+                Enter Valid Phone Number
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="heading1">&nbsp;REFERENCE 2</p>
+        <div class="form-row">
+          <div class="row">
+            <div class="col-4 form-floating">
+              <input
+                type="text"
+                class="form-control reference-input form-control-sm"
+                id="name2"
+                name="name2"
+                formControlName="name2"
+                placeholder="Name"
+                ngModel="{{ references[0].name2 }}"
+              />
+              <label for="name2" class="text-secondary"
+                >Name&nbsp;<span class="text-danger">*</span></label
+              >
+              <div
+                class="div1 text-danger"
+                *ngIf="
+                  !name2?.valid && (name2?.dirty || name2?.touched);
+                  else elseBlock
+                "
+              >
+                Enter a Valid Name
+              </div>
+            </div>
+            <div class="col-4 form-floating">
+              <input
+                type="text"
+                class="form-control reference-input form-control-sm"
+                id="designation2"
+                name="designation2"
+                placeholder="Designation"
+                formControlName="designation2"
+                ngModel="{{ references[0].designation2 }}"
+              />
+              <label for="designation2" class="text-secondary"
+                >Designation&nbsp;<span class="text-danger">*</span></label
+              >
+              <div
+                class="div1 text-danger"
+                *ngIf="
+                  !designation2?.valid &&
+                    (designation2?.dirty || designation2?.touched);
+                  else elseBlock
+                "
+              >
+                Designation is Mandatory
+              </div>
+              <ng-template #elseBlock><br /></ng-template>
+            </div>
+            <div class="col-4 form-floating">
+              <input
+                type="text"
+                class="form-control reference-input"
+                id="company2"
+                name="company2"
+                placeholder="Company"
+                formControlName="company2"
+                ngModel="{{ references[0].company2 }}"
+              />
+              <label for="company2" class="text-secondary"
+                >Company&nbsp; <span class="text-danger">*</span></label
+              >
+              <div
+                class="div1 text-danger"
+                *ngIf="
+                  !company2?.valid && (company2?.dirty || company2?.touched);
+                  else elseBlock
+                "
+              >
+                Company is Mandatory
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="row pb-2">
+            <div class="col-4 form-floating">
+              <input
+                type="text"
+                class="form-control reference-input"
+                id="email2"
+                name="email2"
+                placeholder="email"
+                formControlName="email2"
+                ngModel="{{ references[0].email2 }}"
+              />
+              <label for="email2" class="text-secondary"
+                >Email&nbsp; <span class="text-danger">*</span></label
+              >
+              <div
+                class="div1 text-danger"
+                *ngIf="
+                  !email2?.valid && (email2?.dirty || email2?.touched);
+                  else elseBlock
+                "
+              >
+                Enter Valid Email Address
+              </div>
+            </div>
+            <div class="col-4 form-floating">
+              <input
+                type="number"
+                class="form-control reference-input"
+                id="phno2"
+                name="phno2"
+                placeholder="Phone Number"
+                formControlName="phno2"
+                ngModel="{{ references[0].phno2 }}"
+              />
+              <label for="phno2" class="text-secondary"
+                >Phone Number &nbsp;<span class="text-danger">*</span></label
+              >
+              <div
+                class="div1 text-danger"
+                *ngIf="
+                  !phno2?.valid && (phno2?.dirty || phno2?.touched);
+                  else elseBlock
+                "
+              >
+                Enter Valid Phone Number
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="btncontrol">
+    <div>
+      <button type="button" class="btn btn-outline-primary rounded-0 m-1">
+        EXIT
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-primary rounded-0 m-1"
+        (click)="gotoHome()"
+        formtarget="blank"
+      >
+        BACK
+      </button>
+    </div>
+    <div>
+      <button
+        type="submit"
+        id="save"
+        form="ref-Form"
+        class="btn btn-primary rounded-0 m-1"
+      >
+        SAVE
+      </button>
+      <button
+        type="submit"
+        id="route"
+        class="btn btn-primary rounded-0 m-1"
+        form="ref-Form"
+        formtarget="blank"
+      >
+        SAVE & CONTINUE
+      </button>
+    </div>
+  </div>
+</div>

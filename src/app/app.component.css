@@ -1,0 +1,27 @@
+.navbar .navbar-list{
+list-style: none;
+display: flex;
+width: 100%;
+justify-content: space-between;
+}
+
+.navbar-list li a{
+   text-transform: uppercase;
+   text-decoration: none;
+   
+   /* padding-left: 1rem; */
+   /* padding-right: 1rem; */
+}
+
+.navbar-list li a:focus {
+   font-weight: bolder;
+   border-bottom: 4px solid rgb(100, 100, 230);
+}
+
+
+.navbar{
+   margin-top:2rem;
+   margin-bottom:1rem;
+   padding-left: 3rem;
+   padding-right: 3rem;
+}
