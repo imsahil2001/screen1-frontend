@@ -182,8 +182,11 @@ export class EmployeePersonalDataComponent implements OnInit {
 
     console.log(event.target.value.length);
     // console.log(this.myReactiveForm.controls.unknown.getValue());
-    if (event.target.value.length == 6) {
 
+
+    if (((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)) && event.target.value.length == 6) {
+
+      console.log(event.target.value);
       this.userservice.getCityState(event.target.value).subscribe((data: any) => {
 
         this.EState = data.state;
@@ -278,6 +281,8 @@ export class EmployeePersonalDataComponent implements OnInit {
       console.log('helo');
 
     }
+
+
 
 
     this.userservice.getGenderFromDb().subscribe(data => {
@@ -549,6 +554,18 @@ export class EmployeePersonalDataComponent implements OnInit {
     this.addAwards();
     this.addEducationRow();
     this.addPEmpDetails();
+
+
+    this.myReactiveForm.get('currentstate').disable();
+    this.myReactiveForm.get('currentcity').disable();
+
+    this.myReactiveForm.get('permanentstate').disable();
+    this.myReactiveForm.get('permanentcity').disable();
+
+    this.myReactiveForm.get('emergencycity').disable();
+    this.myReactiveForm.get('emergencystate').disable();
+
+
   }
 
 
@@ -595,13 +612,6 @@ export class EmployeePersonalDataComponent implements OnInit {
   }
 
   addPEmpDetails() {
-
-
-
-
-
-
-
 
 
     this.myReactiveForm.addControl('companyname' + this.countPEmpDetails, new FormControl(null, [
